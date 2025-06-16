@@ -114,6 +114,19 @@ class ColQwen2_5_Processor(BaseVisualRetrieverProcessor, Qwen2VLProcessor):  # n
         """
         return self.score_multi_vector(qs, ps, device=device, **kwargs)
 
+
+     def avg(
+        self,
+        qs: List[torch.Tensor],
+        ps: List[torch.Tensor],
+        device: Optional[Union[str, torch.device]] = None,
+        **kwargs,
+    ) -> torch.Tensor:
+        """
+        Compute the MaxSim score (ColBERT-like) for the given multi-vector query and passage embeddings.
+        """
+        return self.avg_multi_vector(qs, ps, device=device, **kwargs)
+
     def get_n_patches(
         self,
         image_size: Tuple[int, int],
